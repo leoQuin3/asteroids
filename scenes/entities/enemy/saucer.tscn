@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd0llb4sievbt"]
+
+[ext_resource type="Texture2D" uid="uid://b04chfbbxl2qe" path="res://sprites/saucer.png" id="1_dhuit"]
+[ext_resource type="Script" path="res://scenes/entities/enemy/saucer.gd" id="1_sv1ei"]
+[ext_resource type="PackedScene" uid="uid://cltcpn726slgt" path="res://scenes/entities/weapons/weapon.tscn" id="2_gejr1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5eyte"]
+size = Vector2(64, 26)
+
+[node name="Saucer" type="CharacterBody2D" groups=["Enemy"]]
+script = ExtResource("1_sv1ei")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5eyte")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_dhuit")
+
+[node name="Weapon" parent="." instance=ExtResource("2_gejr1")]

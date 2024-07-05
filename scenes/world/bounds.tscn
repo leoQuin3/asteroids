@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv05kkmox7dtp"]
+
+[ext_resource type="Script" path="res://scenes/world/bounds.gd" id="1_pxxtx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nwh3"]
+size = Vector2(1024, 768)
+
+[node name="WorldBounds" type="Area2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_pxxtx")
+
+[node name="BoundsCollision" type="CollisionShape2D" parent="."]
+position = Vector2(512, 384)
+shape = SubResource("RectangleShape2D_5nwh3")
+
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -14,6 +14,3 @@ func _on_body_entered(body):
 	if body is Asteroid:
 		body.destroy()
 	queue_free()
-
-func _on_bullet_life_span_timeout():
-	queue_free()

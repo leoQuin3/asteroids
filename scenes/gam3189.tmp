@@ -17,15 +17,12 @@ position = Vector2(512, 384)
 
 [node name="Asteroid" parent="." instance=ExtResource("1_ynvst")]
 position = Vector2(888, 216)
-MAX_NUM_DEBRIS = 5
 
 [node name="Asteroid2" parent="." instance=ExtResource("1_ynvst")]
 position = Vector2(192, 224)
-MAX_NUM_DEBRIS = 5
 
 [node name="Asteroid3" parent="." instance=ExtResource("1_ynvst")]
 position = Vector2(552, 600)
-MAX_NUM_DEBRIS = 5
 
 [node name="WorldBounds" parent="." instance=ExtResource("1_dfv0m")]
 collision_mask = 27

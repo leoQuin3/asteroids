@@ -7,4 +7,4 @@ class_name Game
 #Add points upon destruction of entities
 func _on_child_exiting_tree(node):
 	if node is Asteroid:
-		ui.add_score(25)
+		ui.add_score(150)

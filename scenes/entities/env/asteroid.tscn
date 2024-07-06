@@ -1,20 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw27pdr1matec"]
+[gd_scene load_steps=5 format=3 uid="uid://dw27pdr1matec"]
 
 [ext_resource type="Texture2D" uid="uid://batii6i61uleu" path="res://sprites/asteroid.png" id="1_4xhbn"]
 [ext_resource type="Script" path="res://scenes/entities/env/asteroid.gd" id="1_y06yn"]
+[ext_resource type="PackedScene" uid="uid://d1hdccdt8nhd" path="res://scenes/entities/env/debris.tscn" id="2_ummba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mbcyn"]
 radius = 35.0
 
 [node name="Asteroid" type="RigidBody2D"]
 collision_layer = 8
-collision_mask = 9
+collision_mask = 17
 linear_damp_mode = 1
 angular_damp_mode = 1
 script = ExtResource("1_y06yn")
+debris = ExtResource("2_ummba")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_mbcyn")
 
-[node name="BodySprite" type="Sprite2D" parent="BodyCollision"]
+[node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_4xhbn")

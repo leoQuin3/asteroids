@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 class_name Player
 
 const SPEED: float = 300.0
@@ -23,6 +22,7 @@ func _physics_process(delta):
 	if thrust:
 		velocity.y += thrust * SPEED * cos(rotation) * delta
 		velocity.x += thrust * SPEED * -sin(rotation) * delta
+	
 	#TODO: Enforce max speed
 	
 	move_and_slide()

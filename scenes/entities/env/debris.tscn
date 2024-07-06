@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1hdccdt8nhd"]
+
+[ext_resource type="Script" path="res://scenes/entities/env/debris.gd" id="1_nlrbp"]
+[ext_resource type="Texture2D" uid="uid://gy8f5bn6gji1" path="res://sprites/debris.png" id="2_q4i1b"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o6ufy"]
+radius = 13.0
+
+[node name="Debris" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 17
+script = ExtResource("1_nlrbp")
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_o6ufy")
+
+[node name="BodySprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_q4i1b")
+offset = Vector2(0.745, 0.46)

@@ -12,15 +12,16 @@ weapon = NodePath("WeaponHolder/Weapon")
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_p0onk")
 
-[node name="BodyCollision" type="CollisionPolygon2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, 12, 20, 12, 32, 0, 6, -13, -6, -13, -32, 0, -20, 12)
+
+[node name="WaitTimer" type="Timer" parent="."]
 
 [node name="WeaponHolder" type="Node2D" parent="."]
 rotation = -1.57079
 
 [node name="Weapon" parent="WeaponHolder" instance=ExtResource("3_1jt0g")]
-position = Vector2(32, 0)
+position = Vector2(0, 32)
+rotation = 1.57079
 
-[node name="AttackTimer" type="Timer" parent="."]
-
-[node name="ChaseTimer" type="Timer" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="WeaponHolder"]

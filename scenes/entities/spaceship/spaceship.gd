@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Player
 
-const SPEED: float = 300.0
+@export var SPEED: float = 300.0
 const ROTATION_SPEED: float = 2.0 * PI
 #const MAX_SPEED: float = 500.0
 
@@ -29,5 +29,5 @@ func _physics_process(delta):
 
 #Input
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
-		weapon.fire() 
+	if weapon and event.is_action_pressed("ui_accept"):
+		weapon.fire()

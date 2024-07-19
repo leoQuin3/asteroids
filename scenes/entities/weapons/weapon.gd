@@ -4,30 +4,36 @@ class_name Weapon
 enum STATES { READY, FIRING, RELOADING }
 
 @export var BULLET_SCENE: PackedScene
-@onready var reload_timer: = $ReloadTimer
+@export var reload_timer: Timer
+@export var reload_time: float = 0.1
+@export var bullet_speed: float = 800.0
 
 var state: STATES = STATES.READY
 
-#TODO: delete bullet after some time.
+func _ready():
+	reload_timer.wait_time = reload_time
+	state = STATES.READY
 
 func change_state(new_state: STATES) -> void:
 	state = new_state
 
 func fire() -> void:
-	if state == STATES.FIRING || state == STATES.RELOADING:
+	# Return if weapon is not ready (i.e. currently firing or reloading)
+	if state != STATES.READY:
 		return
 	
 	change_state(STATES.FIRING)
 	
-	#Create bullet and initialize position and rotation
-	var bullet = BULLET_SCENE.instantiate()
-	bullet.direction = Vector2.from_angle(self.global_rotation)
+	# Create bullet
+	var bullet: Bullet = BULLET_SCENE.instantiate()
+	bullet.SPEED = bullet_speed
+	bullet.direction = Vector2.from_angle(self.global_rotation).normalized()
 	bullet.global_position = self.global_position
 	
-	#add bullet to root scene
+	# Add bullet to root scene
 	get_tree().root.add_child(bullet)
 	
-	#Set state and reload timer
+	# Set state and reload timer
 	change_state(STATES.RELOADING)
 	reload_timer.start()
 

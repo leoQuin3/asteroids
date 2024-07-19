@@ -1,9 +1,9 @@
 extends CharacterBody2D
 class_name Saucer
 
+enum STATES {IDLE, ATTACK, CHASE}
+@export var initialState: STATES = STATES.IDLE
 @export var SPEED: float = 100.0
-#@export var initialState: STATES = STATES.IDLE
-#enum STATES {IDLE, ATTACK, CHASE}
 @export var weapon: Weapon
 @onready var player: Player = get_tree().get_first_node_in_group("Player")
 @onready var weapon_holder = $WeaponHolder
@@ -11,9 +11,7 @@ class_name Saucer
 @onready var chase_timer = $ChaseTimer
 
 func _process(delta):
-	chase()
-	attack()
-	# Implement state machine
+	# TODO: Implement state machine
 	move_and_slide()
 
 # Follow Player

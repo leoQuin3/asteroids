@@ -7,7 +7,8 @@
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
 collision_mask = 14
 script = ExtResource("1_1ol6n")
-SPEED = 150.0
+THRUST_SPEED = 500.0
+MAX_SPEED = 400.0
 weapon = NodePath("Weapon")
 
 [node name="BodyCollision" type="CollisionPolygon2D" parent="."]

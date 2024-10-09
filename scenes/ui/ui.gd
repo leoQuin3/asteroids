@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name UI
 
-@onready var score_label = $Control/MarginContainer/VBoxContainer/HBoxContainer/Score
+@export var score_label: Label
 
 var score: int = 0
 

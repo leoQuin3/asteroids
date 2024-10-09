@@ -3,10 +3,11 @@ class_name Weapon
 
 enum STATES { READY, FIRING, RELOADING }
 
+const reload_time: float = 0.1
+
 @export var BULLET_SCENE: PackedScene
 @export var reload_timer: Timer
-@export var reload_time: float = 0.1
-@export var bullet_speed: float = 800.0
+@export var shooter: CollisionObject2D
 
 var state: STATES = STATES.READY
 
@@ -26,9 +27,9 @@ func fire() -> void:
 	
 	# Create bullet
 	var bullet: Bullet = BULLET_SCENE.instantiate()
-	bullet.SPEED = bullet_speed
 	bullet.direction = Vector2.from_angle(self.global_rotation).normalized()
 	bullet.global_position = self.global_position
+	bullet.shooter = self.shooter
 	
 	# Add bullet to root scene
 	get_tree().root.add_child(bullet)

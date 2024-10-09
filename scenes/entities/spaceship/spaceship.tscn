@@ -5,10 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://cltcpn726slgt" path="res://scenes/entities/weapons/weapon.tscn" id="3_2763h"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
+collision_layer = 17
 collision_mask = 14
 script = ExtResource("1_1ol6n")
-THRUST_SPEED = 500.0
-MAX_SPEED = 400.0
 weapon = NodePath("Weapon")
 
 [node name="BodyCollision" type="CollisionPolygon2D" parent="."]
@@ -18,5 +17,6 @@ polygon = PackedVector2Array(0, -14.4, -13.44, 12.48, 0, 5.76, 13.44, 12.48)
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_iyh7c")
 
-[node name="Weapon" parent="." instance=ExtResource("3_2763h")]
+[node name="Weapon" parent="." node_paths=PackedStringArray("shooter") instance=ExtResource("3_2763h")]
 rotation = -1.57079
+shooter = NodePath("..")

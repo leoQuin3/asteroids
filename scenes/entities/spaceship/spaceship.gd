@@ -1,32 +1,31 @@
 extends CharacterBody2D
 class_name Player
 
-@export var THRUST_SPEED: float = 300.0
-@export var MAX_SPEED: float = 500.0
+# Properties
+const THRUST_SPEED: float = 250.0
+const TURN_SPEED: float = 5.0
+const MAX_SPEED: float = 250.0
+
+# Connect nodes
 @export var weapon: Weapon
-@export var body_sprite: Sprite2D
-@export var collider: CollisionPolygon2D
 
-const ROTATION_SPEED: float = 2.0 * PI
-
-#Movement
+# Movement
 func _physics_process(delta):
 	# Get input
-	var thrustVector = Input.get_axis("ui_up","ui_down")
-	var rotateVector = Input.get_axis("ui_left", "ui_right")
+	var thrustInput = Input.get_axis("ui_up","ui_down")
+	var rotateInput = Input.get_axis("ui_left", "ui_right")
 	
-	# Rotate ship	
-	rotation += rotateVector * ROTATION_SPEED * delta
+	# Rotate ship
+	rotation += rotateInput * TURN_SPEED * delta
 	
 	# Move ship
-	if thrustVector:
-		velocity.y += thrustVector * THRUST_SPEED * cos(rotation) * delta
-		velocity.x += thrustVector * THRUST_SPEED * -sin(rotation) * delta
+	if thrustInput:
+		velocity.y += thrustInput * THRUST_SPEED * cos(rotation) * delta
+		velocity.x += thrustInput * THRUST_SPEED * -sin(rotation) * delta
 	
 	# Enforce max speed
 	if velocity.length() > MAX_SPEED:
 		velocity = velocity.normalized() * MAX_SPEED
-	print(velocity.length())
 	
 	# Update
 	move_and_slide()
@@ -35,3 +34,7 @@ func _physics_process(delta):
 func _input(event):
 	if weapon and event.is_action_pressed("ui_accept"):
 		weapon.fire()
+
+# Delete self
+func destroy() -> void:
+	queue_free()

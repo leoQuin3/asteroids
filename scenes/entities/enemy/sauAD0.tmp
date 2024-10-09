@@ -4,13 +4,19 @@
 [ext_resource type="Script" path="res://scenes/entities/enemy/saucer.gd" id="1_x1lfq"]
 [ext_resource type="PackedScene" uid="uid://cltcpn726slgt" path="res://scenes/entities/weapons/weapon.tscn" id="3_1jt0g"]
 
-[node name="Saucer" type="CharacterBody2D" node_paths=PackedStringArray("weapon", "weapon_holder", "attack_timer", "chase_timer")]
+[node name="Saucer" type="CharacterBody2D" node_paths=PackedStringArray("weapon", "weapon_holder", "attack_timer", "chase_timer", "idle_timer")]
 motion_mode = 1
 script = ExtResource("1_x1lfq")
+initialState = 1
+SPEED = null
+ATTACK_TIME = null
+CHASE_TIME = null
+IDLE_TIME = null
 weapon = NodePath("WeaponHolder/Weapon")
 weapon_holder = NodePath("WeaponHolder")
 attack_timer = NodePath("AttackTimer")
 chase_timer = NodePath("ChaseTimer")
+idle_timer = NodePath("IdleTimer")
 
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_p0onk")
@@ -23,7 +29,22 @@ rotation = -1.57079
 
 [node name="Weapon" parent="WeaponHolder" instance=ExtResource("3_1jt0g")]
 position = Vector2(32, 0)
+reload_time = 0.5
+bullet_speed = 300.0
+bullet_lifespan = 2.0
+
+[node name="RayCast2D" type="RayCast2D" parent="WeaponHolder"]
+rotation = -1.57079
 
 [node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="ChaseTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="IdleTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="timeout" from="IdleTimer" to="." method="_on_idle_timer_timeout"]

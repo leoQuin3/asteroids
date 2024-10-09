@@ -6,13 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_itij8"]
 size = Vector2(8, 8)
 
-[node name="Bullet" type="Area2D" node_paths=PackedStringArray("timer")]
+[node name="Bullet" type="Area2D"]
 collision_layer = 16
-collision_mask = 40
+collision_mask = 41
 linear_damp = 100.0
 angular_damp = 100.0
 script = ExtResource("1_s1rsj")
-timer = NodePath("BulletLifeSpan")
 
 [node name="BulletCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_itij8")
@@ -20,9 +19,4 @@ shape = SubResource("RectangleShape2D_itij8")
 [node name="BulletSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_dy5v8")
 
-[node name="BulletLifeSpan" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="timeout" from="BulletLifeSpan" to="." method="_on_bullet_life_span_timeout"]

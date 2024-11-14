@@ -9,5 +9,7 @@ BULLET_SCENE = ExtResource("2_u1yed")
 reload_timer = NodePath("ReloadTimer")
 
 [node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
 
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]

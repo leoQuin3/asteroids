@@ -1,11 +1,8 @@
 extends Area2D
 class_name Bullet
 
-# Connect nodes
-@export var timer: Timer
-
 # Properties
-const SPEED: float = 800.0
+const SPEED: float = 500.0
 var direction: Vector2 = Vector2()
 var shooter: CollisionObject2D
 
@@ -27,4 +24,7 @@ func _on_body_entered(body):
 		return
 	if body.has_method("destroy"):
 		body.destroy()
+	queue_free()
+
+func _on_bullet_lifespan_timeout() -> void:
 	queue_free()

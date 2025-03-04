@@ -1,15 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1hdccdt8nhd"]
+[gd_scene load_steps=6 format=3 uid="uid://d1hdccdt8nhd"]
 
 [ext_resource type="Script" path="res://scenes/entities/env/debris.gd" id="1_nlrbp"]
 [ext_resource type="Texture2D" uid="uid://gy8f5bn6gji1" path="res://sprites/debris.png" id="2_q4i1b"]
+[ext_resource type="PackedScene" uid="uid://ceaopw1nwsnl1" path="res://scenes/entities/env/debris_particle.tscn" id="2_ra5wd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o6ufy"]
+radius = 11.0454
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0toyk"]
 radius = 13.0
 
 [node name="Debris" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 17
 script = ExtResource("1_nlrbp")
+debris_particle = ExtResource("2_ra5wd")
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o6ufy")
@@ -17,3 +22,11 @@ shape = SubResource("CircleShape2D_o6ufy")
 [node name="BodySprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_q4i1b")
 offset = Vector2(0.745, 0.46)
+
+[node name="DebrisDetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="DebrisDetectionCollision" type="CollisionShape2D" parent="DebrisDetectionArea"]
+shape = SubResource("CircleShape2D_0toyk")
+
+[connection signal="body_entered" from="DebrisDetectionArea" to="." method="_on_debris_detection_area_body_entered"]

@@ -7,6 +7,7 @@ const MIN_NUM_DEBRIS: int = 5
 
 # Connect nodes
 @export var debris: PackedScene
+@export var debris_particle: PackedScene
 
 # Initialize velocity, orientation and size
 func _ready():
@@ -31,4 +32,13 @@ func spawn_debris() -> void:
 # Destroy self
 func destroy() -> void:
 	spawn_debris()
+	if debris_particle != null and debris_particle.can_instantiate():
+		var new_debris: CPUParticles2D = debris_particle.instantiate()
+		new_debris.position = self.global_position
+		new_debris.emitting = true
+		get_tree().root.add_child(new_debris)
 	queue_free()
+
+func _on_detection_area_body_entered(body):
+	if body is Player and body.has_method("destroy"):
+		body.destroy()

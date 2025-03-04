@@ -1,14 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://blouheg86yvxd"]
+[gd_scene load_steps=8 format=3 uid="uid://blouheg86yvxd"]
 
 [ext_resource type="Script" path="res://scenes/entities/spaceship/spaceship.gd" id="1_1ol6n"]
 [ext_resource type="Texture2D" uid="uid://dkrthvicup8k5" path="res://sprites/spaceship.png" id="1_iyh7c"]
+[ext_resource type="PackedScene" uid="uid://br5sw2cjctmg4" path="res://scenes/entities/spaceship/shipdebris.tscn" id="2_srqsf"]
 [ext_resource type="PackedScene" uid="uid://cltcpn726slgt" path="res://scenes/entities/weapons/weapon.tscn" id="3_2763h"]
+[ext_resource type="Texture2D" uid="uid://dmto6lpfgkphd" path="res://sprites/spaceship-thrust1.png" id="5_blq8c"]
+[ext_resource type="Texture2D" uid="uid://caytxyn3wi3ge" path="res://sprites/spaceship-thrust2.png" id="6_t6vbc"]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon")]
-collision_layer = 17
-collision_mask = 14
+[sub_resource type="SpriteFrames" id="SpriteFrames_q0hwe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"idle",
+"speed": 24.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_blq8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t6vbc")
+}],
+"loop": true,
+"name": &"thrust",
+"speed": 30.0
+}]
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon", "thrust_sprite")]
+collision_mask = 46
 script = ExtResource("1_1ol6n")
 weapon = NodePath("Weapon")
+debris_particle = ExtResource("2_srqsf")
+thrust_sprite = NodePath("ThrustSprite")
 
 [node name="BodyCollision" type="CollisionPolygon2D" parent="."]
 position = Vector2(-3.85186e-34, 2)
@@ -20,3 +46,9 @@ texture = ExtResource("1_iyh7c")
 [node name="Weapon" parent="." node_paths=PackedStringArray("shooter") instance=ExtResource("3_2763h")]
 rotation = -1.57079
 shooter = NodePath("..")
+
+[node name="ThrustSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 5)
+sprite_frames = SubResource("SpriteFrames_q0hwe")
+animation = &"idle"
+frame_progress = 0.072248

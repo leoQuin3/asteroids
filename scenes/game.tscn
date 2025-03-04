@@ -23,21 +23,20 @@ layer = 2
 position = Vector2(512, 384)
 
 [node name="Saucer" parent="." instance=ExtResource("6_wpjka")]
-position = Vector2(392, 160)
-collision_layer = 32
+position = Vector2(88, 56)
 collision_mask = 21
 
 [node name="Asteroid" parent="." instance=ExtResource("1_ynvst")]
-position = Vector2(888, 216)
+position = Vector2(872, 520)
 
 [node name="Asteroid2" parent="." instance=ExtResource("1_ynvst")]
-position = Vector2(192, 224)
+position = Vector2(144, 512)
 
 [node name="Asteroid3" parent="." instance=ExtResource("1_ynvst")]
-position = Vector2(552, 600)
+position = Vector2(520, 272)
 
 [node name="WorldBounds" parent="." instance=ExtResource("1_dfv0m")]
-collision_mask = 27
+collision_mask = 59
 metadata/_edit_lock_ = true
 
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

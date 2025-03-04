@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceaopw1nwsnl1"]
+
+[ext_resource type="Texture2D" uid="uid://bowhw285cyxam" path="res://sprites/bullet.png" id="1_wqjvg"]
+
+[node name="ShipDebris" type="CPUParticles2D"]
+emitting = false
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+texture = ExtResource("1_wqjvg")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 200.0
+angle_min = 720.0
+angle_max = 720.0
+scale_amount_min = 0.25
+scale_amount_max = 0.25

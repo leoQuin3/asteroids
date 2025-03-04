@@ -21,9 +21,6 @@ func _on_area_exited(area) -> void:
 	
 #Displace area if out of bounds
 func displace_entity(body, currentPosition: Vector2) -> void:
-	#TODO: Calculate body's trajectory to displace linearly instead of if-statements
-	
-	#TODO: Replace following if-statements
 	if currentPosition.x < 0:
 		body.global_position.x = window_width
 	elif currentPosition.x > window_width:
